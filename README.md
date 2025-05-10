@@ -30,7 +30,7 @@ git clone
 
 The Git local repository mainly consists of three parts: workspace, staging area, and repository.
 
-![repository](/home/jcy/Git_tutorials/images/1.png)
+![repository](images/1.png)
 
 
 
