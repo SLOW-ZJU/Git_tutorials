@@ -32,7 +32,7 @@ The Git local repository mainly consists of three parts: workspace, staging area
 
 ![repository](images/1.png)
 
-
+The workspace is the file or code you are currently modifying.
 
 Add modifications and deletions of tracked files are added to the staging area
 
