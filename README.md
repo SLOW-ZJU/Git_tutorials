@@ -32,7 +32,7 @@ The Git local repository mainly consists of three parts: workspace, staging area
 
 ![repository](images/1.png)
 
-The workspace is the file or code you are currently modifying.
+The workspace is the directory on the local device, that is, the folder where the local warehouse is located.
 
 The staging area represents a temporary storage area for saving the modified content to be submitted to the git repository.
 
