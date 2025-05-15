@@ -21,6 +21,8 @@ sudo apt install git
 
 Configure your Git
 
+`--global` applies to all Git repositories, while `--local` only affects the current one.
+
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "Your Email"
@@ -69,7 +71,7 @@ git status
 # After running the above command，Git will show your file as untracked.Stage the untracked file for commit using the following command:
 git add test1.txt
 git status
-# Git will mark your file as staged for commit. Use the following command to commit them:
+# Git will mark your file as staged for commit. Use the following command to commit them(The text after -m serves as the commit message.):
 git commit -m "first commit"
 ```
 
@@ -84,14 +86,40 @@ git add -u
 git add -A #or git add --all
 # Only adds files in the current directory.
 git add .
+# Display the commit history of a repository.(--oneline for compact one-line view)
+git log
+# This command lists all files that are currently tracked in the repository's staging area or working tree.
+git ls-files
 ```
 
-#### Summary
+### Undo changes in Git
+
+```bash
+echo 222 > test2.txt
+echo 333 > test3.txt
+git add test2.txt test3.txt 
+git commit -m "second commit"
+# This command is used to remove files from Git's tracking index and from the working directory:
+git rm test2.txt
+# If you want to stop tracking but keep files locally:
+git rm --cached test3.txt
+git add test3.txt
+git commit -m "third commit"
+```
+
+If you want to revert to a specific version,use `git reset`.
+
+Mode|Command|Affects HEAD|Affects Staging|Affects Working Dir
+:--:|:--:|:--:|:--:|:--:
+Soft|`git reset --soft commit_id`|✅Yes|❌No|❌No
+Mixed(Default)|`git reset --mixed commit_id`|✅Yes|✅Yes|❌No
+Hard|`git reset --hard commit_id`|✅Yes|✅Yes|✅Yes
+
+
 
 ```bash
 
 ```
-
 Clone an exist repository
 
 ```bash
