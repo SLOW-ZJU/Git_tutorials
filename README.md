@@ -185,6 +185,14 @@ git clone <URL>
 cd ~/learn_git/test/
 # List all branches of current local repository
 git branch
+# List all branches of current local repository
+git branch -a
+# List all branches of current local repository
+git branch -M
+# List all branches of current local repository
+git branch -vv
+# List all branches of current local repository
+git branch -r
 ```
 
 ## Useful Tools
