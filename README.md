@@ -38,9 +38,9 @@ cd learn_git
 git init
 ```
 
-Then use `ls -a` and you can find `.git` ,this means your directory `learn_git` is a new Git repository, `.git` stores all Git-related data, including commit history, branches, remote repository information and more.
+Then use `ls -a` and you can find `.git`, this means your directory `learn_git` is a new Git repository, `.git` stores all Git-related data, including commit history, branches, remote repository information and more.
 
-To remove Git management from this folder,run the following command:
+To remove Git management from this folder, run the following command:
 
 ```bash
 rm -rf .git
@@ -59,7 +59,7 @@ cd test
 
 ## Commands
 
-### Add files to the repository 
+### Add files to the repository
 
 Make sure you're in the `learn_git/test` and let's see how to use Git to manage your files.
 
@@ -109,17 +109,42 @@ git commit -m "third commit"
 
 If you want to revert to a specific version,use `git reset`.
 
-Mode|Command|Affects HEAD|Affects Staging|Affects Working Dir
+Mode|Command|Affects HEAD|Affects Staging Area|Affects Working Directory
 :--:|:--:|:--:|:--:|:--:
-Soft|`git reset --soft commit_id`|✅Yes|❌No|❌No
-Mixed(Default)|`git reset --mixed commit_id`|✅Yes|✅Yes|❌No
-Hard|`git reset --hard commit_id`|✅Yes|✅Yes|✅Yes
+Soft|`git reset --soft <commit-id>`|✅Yes|❌No|❌No
+Mixed(Default)|`git reset --mixed <commit-id>`|✅Yes|✅Yes|❌No
+Hard|`git reset --hard <commit-id>`|✅Yes|✅Yes|✅Yes
 
+`--soft`:Only the HEAD pointer is moved, the staging area and working directory remain unchanged
+`--mixed`:Only the staging area is reset to the state of the specified commit, while the working directory's file contents remain unchanged.
+`--hard`:Both the working directory and staging area will fully match the state of the specified commit.
 
+Here’s a simple exercise to practice git reset with different modes. Follow the steps to observe how each mode affects your repository.
 
 ```bash
-
+cd ~/learn_git/
+cp -r test/ soft
+cp -r test/ mixed
+cp -r test/ hard
+cd hard
+# Check your commit ID of your first commit.
+git log --oneline
+# You can inspect your workspace and staging area using commands like git log or git ls-files."
+git reset --hard <commit_id> 
+cd ~/learn_git/mixed/
+git reset --mixed <commit_id>
+cd ~/learn_git/soft/
+git reset --soft <commit_id>
 ```
+
+### Branch managemen
+
+```bash
+git branch
+```
+
+### Remote repository
+
 Clone an exist repository
 
 ```bash
