@@ -10,6 +10,8 @@
 
 ## Introduction
 
+This is the official website of [Git](https://git-scm.com/doc). All your questions can be answered here.
+
 ## Get Started
 
  Download Git for Linux
@@ -27,6 +29,7 @@ Configure your Git
 git config --global user.name "Your Name"
 git config --global user.email "Your Email"
 git config --global core.editor "vim"
+git config --global init.defaultBranch main
 ```
 
 Start with a new repository
@@ -119,6 +122,8 @@ Hard|`git reset --hard <commit-id>`|✅Yes|✅Yes|✅Yes
 `--mixed`:Only the staging area is reset to the state of the specified commit, while the working directory's file contents remain unchanged.
 `--hard`:Both the working directory and staging area will fully match the state of the specified commit.
 
+If you use it incorrectly, don't worry, `git reflog` is your undo button for Git’s local history! `git reflog`  tracks all changes to branch tips and other references (like branches/tags) in your local repository. It’s a safety net for recovering lost commits or branches, even after destructive operations (e.g., reset, rebase, or deleted branches).
+
 Here’s a simple exercise to practice git reset with different modes. Follow the steps to observe how each mode affects your repository.
 
 ```bash
@@ -137,18 +142,49 @@ cd ~/learn_git/soft/
 git reset --soft <commit_id>
 ```
 
-### Branch managemen
-
-```bash
-git branch
-```
-
 ### Remote repository
 
-Clone an exist repository
+#### Create SSH Key
+
+```bash
+ssh-keygen -t ed25519 -C "your_email"
+# It will prompt you for the save path. You can usually accept the default.
+# Enter file in which to save the key (/home/yourname/.ssh/id_ed25519):
+# View the SSH public key and copy the entire line.
+cat ~/.ssh/id_ed25519.pub
+```
+
+Log in to GitHub, click your profile picture in the top right corner, then select Settings. In the left sidebar, choose SSH and GPG keys, click New SSH key. Enter a title, and paste the copied public key into the Key field, then click Add SSH key.
+
+#### Add an remote repository
+
+Firstly, log in to GitHub and create a new repository named `learn_git`.
+
+```bash
+cd ~/learn_git/test/
+# Add a new remote repository to the local repository. 'origin' is the default name,you can change it to whatever you want.
+git remote add origin <Your SSH URL>
+# Run this command can show all remote repository of the current local repository.
+git remote -v
+# Push the local branch to a specific branch on the remote repository.
+git push -u origin main:main
+#
+git pull origin main:main
+
+```
+
+#### Clone an exist repository
 
 ```bash
 git clone <URL>
+```
+
+### Branch managemen
+
+```bash
+cd ~/learn_git/test/
+# List all branches of current local repository
+git branch
 ```
 
 ## Useful Tools
