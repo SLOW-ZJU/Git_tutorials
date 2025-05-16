@@ -166,33 +166,119 @@ cd ~/learn_git/test/
 git remote add origin <Your SSH URL>
 # Run this command can show all remote repository of the current local repository.
 git remote -v
-# Push the local branch to a specific branch on the remote repository.
-git push -u origin main:main
-#
-git pull origin main:main
+# Push the local branch to the remote repository.
+git push -u origin main
+# Go to your GitHub repository and click 'Add a README'. Type something randomly and commit it.
+# Go back to the terminal and enter the following command：
+git pull #git pull fetches changes from the remote repository and merges them into your local branch.
+```
 
+The complete syntax should be:
+
+```bash
+# Push the local branch to a specific branch on the remote repository.
+git push <remote_repo_name> <local_branch_name>:<remote_branch_name>
+# Pull 
+git pull <remote_repo_name> <remote_branch_name>:<local_branch_name>
+```
+
+With the -u option added, Git not only pushes the contents of the local main branch to the new remote main branch, but also sets up a tracking relationship between the local main branch and the remote main branch. This allows future push or pull operations to be simplified.You can use `git push` or `git pull`.
+
+You can also link a local branch to a remote tracking branch as follows:
+
+```bash
+git branch --set-upstream-to=<remote_repo_name>/<remote_branch> <local_branch>
+```
+
+If you want to remove the association with a remote repository:
+
+```bash
+git remote remove <remote_repo_name>
 ```
 
 #### Clone an exist repository
+
+Only the default branch will be checked out; if you want to check out a specific branch, use `-b` or switch manually.
 
 ```bash
 git clone <URL>
 ```
 
-### Branch managemen
+### Branch management
 
 ```bash
 cd ~/learn_git/test/
-# List all branches of current local repository
+# List all branches of current local repository.
 git branch
-# List all branches of current local repository
+# List all branches of current local repository and remote repository.
 git branch -a
-# List all branches of current local repository
-git branch -M
-# List all branches of current local repository
+# Create a new branch:
+git branch <new_branch_name>
+# Switch to a specific branch:
+git checkout <branch_name> # Or
+git switch <branch_name> # (Recommend)
+# If you want to delete a branch, run:
+git branch -d <branch_name>
+```
+
+#### Integrate branch changes
+
+##### Merge
+
+Combines changes from a source branch into a target branch, creating a new merge commit to preserve branch history.
+
+```bash
+# Merge the feature branch into the current branch
+git merge <feature-branch>
+```
+
+##### Rebase
+
+Rewrites commit history by moving the current branch’s commits to the tip of the target branch, resulting in a linear history.
+
+```bash
+# Rebase the current branch onto the target branch.
+git rebase <target-branch>  
+```
+
+##### Visualization
+
+Initial Branch Structure
+
+```
+      C1 --- C2 --- C3 (main)
+        \
+         C4 --- C5 (experiment)
+```
+
+After `git merge`:
+
+```
+      C1 --- C2 --- C3 -------- M (main)
+        \                     /
+         C4 ------------ C5 (experiment)
+```
+
+After `git rebase`:
+
+```
+      C1 --- C2 --- C3 (main)
+                     \
+                      C4' --- C5' (experiment)
+```
+
+#### Other parameters
+
+```bash
+# Rename the current branch.
+git branch -m <new_name>
+# Lists all local branches with latest commit hash and upstream tracking branch.
 git branch -vv
-# List all branches of current local repository
+# List all branches of remote repository.
 git branch -r
+# Create a new branch and switch to it.
+git checkout -b <new_branch_name> # Or
+git switch -c <new_branch_name>
 ```
 
 ## Useful Tools
