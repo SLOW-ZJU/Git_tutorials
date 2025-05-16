@@ -118,9 +118,11 @@ Soft|`git reset --soft <commit-id>`|✅Yes|❌No|❌No
 Mixed(Default)|`git reset --mixed <commit-id>`|✅Yes|✅Yes|❌No
 Hard|`git reset --hard <commit-id>`|✅Yes|✅Yes|✅Yes
 
-`--soft`:Only the HEAD pointer is moved, the staging area and working directory remain unchanged
-`--mixed`:Only the staging area is reset to the state of the specified commit, while the working directory's file contents remain unchanged.
-`--hard`:Both the working directory and staging area will fully match the state of the specified commit.
+`--soft`: Only the HEAD pointer is moved, the staging area and working directory remain unchanged
+
+`--mixed`: Only the staging area is reset to the state of the specified commit, while the working directory's file contents remain unchanged.
+
+`--hard`: Both the working directory and staging area will fully match the state of the specified commit.
 
 If you use it incorrectly, don't worry, `git reflog` is your undo button for Git’s local history! `git reflog`  tracks all changes to branch tips and other references (like branches/tags) in your local repository. It’s a safety net for recovering lost commits or branches, even after destructive operations (e.g., reset, rebase, or deleted branches).
 
